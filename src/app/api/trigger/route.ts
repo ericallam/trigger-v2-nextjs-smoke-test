@@ -7,7 +7,7 @@ import {
 } from "@trigger.dev/sdk";
 import { z } from "zod";
 
-export const client = new TriggerClient({
+const client = new TriggerClient({
   id: "trigger-v2-example",
   url: process.env.VERCEL_URL,
   apiKey: process.env.TRIGGER_API_KEY,
