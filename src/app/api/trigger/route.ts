@@ -98,6 +98,25 @@ new Job(client, {
   },
 });
 
+new Job(client, {
+  id: "event-2",
+  name: "Run when the foo.bar.baz event happens",
+  version: "0.0.1",
+  enabled: true,
+  trigger: eventTrigger({
+    name: "foo.bar.baz",
+  }),
+  run: async (payload, io, ctx) => {
+    await io.runTask("task-1", { name: "task-1" }, async (task) => {
+      return { task };
+    });
+
+    return {
+      payload,
+    };
+  },
+});
+
 export const { POST, dynamic } = createAppRoute(client, {
   path: "/api/trigger",
 });
